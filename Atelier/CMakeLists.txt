@@ -1,7 +1,5 @@
-cmake_minimum_required(VERSION 3.20)
-project(Atelier LANGUAGES C CXX)
-set(CMAKE_CXX_STANDARD 17)
-
-add_subdirectory(Atelier)
-add_subdirectory(Platformer)
-add_subdirectory(vendor)
+file(GLOB_RECURSE ATELIER_SOURCES CONFIGURE_DEPENDS src/*.cpp)
+add_library(Atelier STATIC ${ATELIER_SOURCES})
+target_include_directories(Atelier PUBLIC include)
+target_link_libraries(Atelier PUBLIC glfw glm::glm OpenGL::GL glad PRIVATE stb_image)
+target_compile_definitions(Atelier PUBLIC GLFW_INCLUDE_NONE)

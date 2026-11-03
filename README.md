@@ -11,8 +11,8 @@ Built with C++ and OpenGL.
 ## Roadmap
 
 ### Milestone 0 – Foundations
-- [ ] CMake project setup
-- [ ] Dependencies: GLFW, glad, GLM, stb_image
+- [x] CMake project setup
+- [x] Dependencies: GLFW, glad, GLM, stb_image
 - [ ] Main loop with delta time
 - [ ] Basic project structure and `Atelier` namespace
 
