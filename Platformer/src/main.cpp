@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <string>
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -30,6 +31,7 @@ int main()
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSwapInterval(0);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
@@ -37,9 +39,22 @@ int main()
         return -1;
     }
 
+    double lastMeasure = glfwGetTime();
+    int nbFrames = 0;
+
     while (!glfwWindowShouldClose(window))
     {
+        double now = glfwGetTime();
+        nbFrames++;
+        if (now - lastMeasure >= 1.0)
+        {
+            double fps = nbFrames / (now - lastMeasure);
+            double ms = 1000.0 / fps;
 
+            std::string title = "Atelier - " + std::to_string((int)fps) + " FPS (" + std::to_string(ms).substr(0, 5) + " ms)";
+            glfwSetWindowTitle(window, title.c_str());
+            std::cout << title << std::endl;
+        }
         processInput(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
