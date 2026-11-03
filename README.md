@@ -13,8 +13,8 @@ Built with C++ and OpenGL.
 ### Milestone 0 – Foundations
 - [x] CMake project setup
 - [x] Dependencies: GLFW, glad, GLM, stb_image
-- [ ] Main loop with delta time
-- [ ] Basic project structure and `Atelier` namespace
+- [x] Main loop with delta time
+- [x] Basic project structure and `Atelier` namespace
 
 **Demo:** a window that opens and closes cleanly, with the FPS shown in the title bar.
 
