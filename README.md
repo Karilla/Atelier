@@ -6,7 +6,7 @@ It's an educational project, so expect things to change, break and get rewritten
 The engine is built step by step through milestones. To keep it grounded, I'm also making a
 small platformer game alongside it, which serves as a test bed for every new feature.
 
-Built with C++ and OpenGL.
+Built with modern C++ (C++17) and OpenGL.
 
 ## Roadmap
 
@@ -44,6 +44,24 @@ Built with C++ and OpenGL.
 - [ ] Basic `Material` class
 
 **Demo:** loading and displaying a real 3D model.
+
+### Milestone 4 – Lighting
+
+- [ ] Phong / Blinn-Phong lighting
+- [ ] Directional, point and spot lights
+- [ ] Normal and specular maps
+- [ ] Shadow mapping for the directional light
+
+**Demo:** a lit scene with moving lights and real-time shadows.
+
+### Milestone 5 – Scene and gameplay
+
+- [ ] Scene graph with transform hierarchy
+- [ ] Entity / component system
+- [ ] AABB collision detection
+- [ ] Basic character controller (gravity, jumping)
+
+**Demo:** a first playable platformer level with a jumping character.
 
 ## Platformer
 
