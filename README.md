@@ -11,6 +11,7 @@ Built with C++ and OpenGL.
 ## Roadmap
 
 ### Milestone 0 – Foundations
+
 - [x] CMake project setup
 - [x] Dependencies: GLFW, glad, GLM, stb_image
 - [x] Main loop with delta time
@@ -19,14 +20,16 @@ Built with C++ and OpenGL.
 **Demo:** a window that opens and closes cleanly, with the FPS shown in the title bar.
 
 ### Milestone 1 – OpenGL abstraction
-- [ ] `Window`, `Shader`, `Texture` classes
-- [ ] `VertexArray`, `VertexBuffer`, `IndexBuffer` classes (RAII)
+
+- [x] `Window`, `Shader`, `Texture` classes
+- [x] `VertexArray`, `VertexBuffer`, `IndexBuffer` classes (RAII)
 - [ ] OpenGL debug output (`glDebugMessageCallback`)
 - [ ] Simple logging system
 
 **Demo:** a textured cube rendered without any raw OpenGL calls in the game code.
 
 ### Milestone 2 – Camera and input
+
 - [ ] Input system (keyboard and mouse)
 - [ ] First-person camera
 - [ ] Window resizing (viewport and projection)
@@ -34,6 +37,7 @@ Built with C++ and OpenGL.
 **Demo:** moving freely around a scene made of cubes.
 
 ### Milestone 3 – Models and resources
+
 - [ ] `Mesh` and `Model` classes
 - [ ] Model loading (glTF)
 - [ ] Resource manager with caching
