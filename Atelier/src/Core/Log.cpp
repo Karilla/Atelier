@@ -6,18 +6,6 @@
 
 namespace Atelier::Core
 {
-    template <typename... Args>
-    void Logger::write(LogLevel level, Args &&...args) const
-    {
-        if (level < s_levelMin)
-        {
-            return;
-        }
-
-        std::ostringstream oss;
-        (oss << ... << std::forward<Args>(args));
-        print(level, oss.str());
-    }
 
     const char *Logger::nameLevel(LogLevel level) const
     {

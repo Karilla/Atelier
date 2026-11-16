@@ -23,7 +23,17 @@ namespace Atelier::Core
         static inline LogLevel s_levelMin = LogLevel::Debug;
 
         template <typename... Args>
-        void write(LogLevel level, Args &&...args) const;
+        void write(LogLevel level, Args &&...args) const
+        {
+            if (level < s_levelMin)
+            {
+                return;
+            }
+
+            std::ostringstream oss;
+            (oss << ... << std::forward<Args>(args));
+            print(level, oss.str());
+        }
 
         void print(LogLevel level, const std::string &message) const;
 

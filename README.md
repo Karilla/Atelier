@@ -24,7 +24,7 @@ Built with modern C++ (C++17) and OpenGL.
 - [x] `Window`, `Shader`, `Texture` classes
 - [x] `VertexArray`, `VertexBuffer`, `IndexBuffer` classes (RAII)
 - [ ] OpenGL debug output (`glDebugMessageCallback`)
-- [ ] Simple logging system
+- [x] Simple logging system
 
 **Demo:** a textured cube rendered without any raw OpenGL calls in the game code.
 

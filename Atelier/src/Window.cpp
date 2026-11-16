@@ -1,4 +1,5 @@
 #include <Atelier/Window.hpp>
+#include <Atelier/OpenGL/Debug.hpp>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdexcept>
@@ -20,6 +21,10 @@ namespace Atelier
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+#ifdef NDEBUG
+        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
+
         m_window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
         if (!m_window)
         {
@@ -37,6 +42,10 @@ namespace Atelier
             glfwTerminate();
             throw std::runtime_error("Cannot load glad");
         }
+
+#ifndef NDEBUG
+        OpenGL::enableDebugOutput();
+#endif
 
         glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow *, int w, int h)
                                        { glViewport(0, 0, w, h); });
