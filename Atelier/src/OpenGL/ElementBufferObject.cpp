@@ -27,6 +27,6 @@ namespace Atelier::OpenGL
 
     unsigned int ElementBufferObject::getCount()
     {
-        return m_count;
+        return m_count / sizeof(unsigned int);
     }
 }

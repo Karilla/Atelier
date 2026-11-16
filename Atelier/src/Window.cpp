@@ -10,7 +10,6 @@ namespace Atelier
 
     Window::Window(int width, int height, std::string title)
     {
-        std::cout << "lol2" << std::endl;
         if (!glfwInit())
         {
             std::cout << "lol init" << std::endl;
@@ -21,7 +20,7 @@ namespace Atelier
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-#ifdef NDEBUG
+#ifndef NDEBUG
         glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
 #endif
 

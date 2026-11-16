@@ -15,10 +15,11 @@ constexpr unsigned int indices[] = {
     1, 2, 3  // second triangle
 };
 Application::Application(const int width, const int height, std::string title) : window(width, height, title),
-                                                                                 vbo(vertices, sizeof(vertices)),
                                                                                  ebo(indices, sizeof(indices)),
-                                                                                 texture1(Atelier::Graphics::TextureData("assets/texture/container.jpg")),
-                                                                                 shader("assets/shaders/basic.vert", "assets/shaders/basic.frag")
+                                                                                 vbo(vertices, sizeof(vertices)),
+                                                                                 shader("assets/shaders/basic.vert", "assets/shaders/basic.frag"),
+                                                                                 texture1(Atelier::Graphics::TextureData("assets/texture/container.jpg"))
+
 {
     Atelier::OpenGL::VertexLayout layout;
     layout.addFloat(3);
@@ -38,13 +39,9 @@ void Application::run()
 {
     while (!window.shouldClose())
     {
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        renderer.clear(0.2f, 0.3f, 0.3f, 1.0f);
 
-        texture1.bind(0);
-        shader.use();
-        vao.bind();
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        renderer.draw(vao, shader, texture1);
 
         window.pollEvents();
         window.swapBuffers();

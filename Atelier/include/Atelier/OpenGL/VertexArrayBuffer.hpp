@@ -12,6 +12,7 @@ namespace Atelier::OpenGL
     private:
         unsigned int m_uid = 0;
         unsigned int m_layout_count = 0;
+        unsigned int m_indice_count = 0;
 
     public:
         VertexArrayBuffer();
@@ -22,6 +23,8 @@ namespace Atelier::OpenGL
 
         void addVertexLayout(VertexLayout layout, VertexBufferObject &vbo);
         void setIndexBuffer(ElementBufferObject &ebo);
+
+        unsigned int getIndiceCount();
 
         void bind();
         void unbind();

@@ -30,6 +30,7 @@ namespace Atelier::OpenGL
 
     void VertexArrayBuffer::setIndexBuffer(ElementBufferObject &ebo)
     {
+        m_indice_count = ebo.getCount();
         bind();
         ebo.bind();
     }
@@ -42,6 +43,11 @@ namespace Atelier::OpenGL
     void VertexArrayBuffer::unbind()
     {
         glBindVertexArray(0);
+    }
+
+    unsigned int VertexArrayBuffer::getIndiceCount()
+    {
+        return m_indice_count;
     }
 
 }
