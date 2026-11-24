@@ -33,7 +33,7 @@ Built with modern C++ (C++17) and OpenGL.
 
 - [ ] Input system (keyboard and mouse)
 - [ ] First-person camera
-- [ ] Window resizing (viewport and projection)
+- [x] Window resizing (viewport and projection)
 
 **Demo:** moving freely around a scene made of cubes.
 

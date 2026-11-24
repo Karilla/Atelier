@@ -4,12 +4,16 @@
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 #include <iostream>
+#include <functional>
+#include <utility>
 
 namespace Atelier
 {
 
     Window::Window(int width, int height, std::string title)
     {
+        m_height = height;
+        m_width = width;
         if (!glfwInit())
         {
             std::cout << "lol init" << std::endl;
@@ -41,19 +45,51 @@ namespace Atelier
             glfwTerminate();
             throw std::runtime_error("Cannot load glad");
         }
-
+        glfwSetWindowUserPointer(m_window, this);
 #ifndef NDEBUG
         OpenGL::enableDebugOutput();
 #endif
+        glEnable(GL_DEPTH_TEST);
+        glfwSetKeyCallback(m_window, [](GLFWwindow *glfWin, int key, int scancode, int action, int mods)
+                           { 
+                            auto *self = static_cast<Window *>(glfwGetWindowUserPointer(glfWin));
+                            if(self && self->m_onkey){
+                                self->m_onkey(key, action != GLFW_RELEASE);
+                            } });
+        glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow *glfWin, int w, int h)
+                                       { 
+            auto *self = static_cast<Window *>(glfwGetWindowUserPointer(glfWin)); 
+            self->m_height = h;
+            self->m_width = w;
+            if(self && self->m_onresize){
+                self->m_onresize(w,h);
+                                    } });
+    }
 
-        glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow *, int w, int h)
-                                       { glViewport(0, 0, w, h); });
+    void Window::setKeyCallback(std::function<void(int, bool)> cb)
+    {
+        m_onkey = std::move(cb);
     }
 
     Window::~Window()
     {
         glfwDestroyWindow(m_window);
         glfwTerminate();
+    }
+
+    int Window::getHeight()
+    {
+        return m_height;
+    }
+
+    int Window::getWidth()
+    {
+        return m_width;
+    }
+
+    void Window::setResizeCallback(std::function<void(int, int)> cb)
+    {
+        m_onresize = std::move(cb);
     }
 
     void Window::setTitle(std::string title)
