@@ -31,7 +31,7 @@ Built with modern C++ (C++17) and OpenGL.
 
 ### Milestone 2 – Camera and input
 
-- [ ] Input system (keyboard and mouse)
+- [x] Input system (keyboard and mouse)
 - [ ] First-person camera
 - [x] Window resizing (viewport and projection)
 

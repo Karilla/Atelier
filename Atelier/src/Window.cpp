@@ -16,7 +16,6 @@ namespace Atelier
         m_width = width;
         if (!glfwInit())
         {
-            std::cout << "lol init" << std::endl;
             throw std::runtime_error("Cannot initalise GLFW");
         }
 
@@ -52,10 +51,11 @@ namespace Atelier
         glEnable(GL_DEPTH_TEST);
         glfwSetKeyCallback(m_window, [](GLFWwindow *glfWin, int key, int scancode, int action, int mods)
                            { 
-                            auto *self = static_cast<Window *>(glfwGetWindowUserPointer(glfWin));
-                            if(self && self->m_onkey){
-                                self->m_onkey(key, action != GLFW_RELEASE);
+            auto *self = static_cast<Window *>(glfwGetWindowUserPointer(glfWin));
+            if(self && self->m_onkey){
+            self->m_onkey(key, action != GLFW_RELEASE);
                             } });
+
         glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow *glfWin, int w, int h)
                                        { 
             auto *self = static_cast<Window *>(glfwGetWindowUserPointer(glfWin)); 
@@ -64,11 +64,47 @@ namespace Atelier
             if(self && self->m_onresize){
                 self->m_onresize(w,h);
                                     } });
+
+        glfwSetScrollCallback(m_window, [](GLFWwindow *glfWin, double xOffset, double yOffset)
+                              {
+            auto *self = static_cast<Window *>(glfwGetWindowUserPointer(glfWin));
+            if(self && self->m_onscroll){
+                self->m_onscroll(xOffset, yOffset);
+            } });
+
+        glfwSetCursorPosCallback(m_window, [](GLFWwindow *glfWindow, double xPos, double yPos)
+                                 {
+            auto *self = static_cast<Window *>(glfwGetWindowUserPointer(glfWindow));
+            if(self && self->m_onmouse){
+                self->m_onmouse(xPos, yPos);
+            } });
+
+        glfwSetMouseButtonCallback(m_window, [](GLFWwindow *glfWindow, int button, int action, int mods)
+                                   {
+            auto *self = static_cast<Window *>(glfwGetWindowUserPointer(glfWindow));
+            if(self && self->m_onmousebutton){
+                self->m_onmousebutton(button, action != GLFW_RELEASE);
+            } });
     }
 
     void Window::setKeyCallback(std::function<void(int, bool)> cb)
     {
         m_onkey = std::move(cb);
+    }
+
+    void Window::setMouseCallback(std::function<void(double, double)> cb)
+    {
+        m_onmouse = std::move(cb);
+    }
+
+    void Window::setScrollCallback(std::function<void(double, double)> cb)
+    {
+        m_onscroll = std::move(cb);
+    }
+
+    void Window::setMouseButtonCallback(std::function<void(double, double)> cb)
+    {
+        m_onmousebutton = std::move(cb);
     }
 
     Window::~Window()

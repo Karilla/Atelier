@@ -16,6 +16,7 @@ namespace Atelier
         std::function<void(int, bool)> m_onkey;
         std::function<void(double, double)> m_onmouse;
         std::function<void(double, double)> m_onscroll;
+        std::function<void(int, bool)> m_onmousebutton;
         int m_width;
         int m_height;
 
@@ -35,6 +36,8 @@ namespace Atelier
         void setMouseCallback(std::function<void(double, double)> cb);
 
         void setScrollCallback(std::function<void(double, double)> cb);
+
+        void setMouseButtonCallback(std::function<void(double, double)> cb);
 
         int getWidth();
         int getHeight();
